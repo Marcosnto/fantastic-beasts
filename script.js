@@ -1,11 +1,24 @@
-// Retorne no console todas as imagens do site
-console.log(document.querySelectorAll('img'));
-// Retorne no console apenas as imagens que começaram com a palav
-console.log(document.querySelectorAll('[src^="img/imagem"'))
-// Selecione todos os links internos (onde o href começa com #)
-console.log(document.querySelectorAll('[href^="#"]'))
-// Selecione o primeiro h2 dentro de .animais-descricao
-console.log(document.querySelector('.animais-descricao h2'));
-// Selecione o último p do site
-const allP = document.querySelectorAll('p');
-console.log(allP[--allP.length]);
+// Adicione a classe ativo a todos os itens do menu
+const getElements = document.querySelectorAll('.menu a');
+getElements.forEach(element => {
+  element.classList.add('ativo');
+});
+
+console.log(getElements);
+
+// Remove a classe ativo de todos os itens do menu e mantenha ape
+getElements.forEach((element, index) => {
+  if(index !== 0){
+    element.classList.remove('ativo');
+  }
+});
+
+console.log(getElements);
+// Verifique se as imagens possuem o atributo alt
+const imgs = document.querySelectorAll('img');
+imgs.forEach((img,index) => {
+  console.log(img.hasAttribute('alt'))
+})
+// Modifique o href do link externo no menu
+const link = document.querySelector('a[href^="http"]');
+link.setAttribute('href', 'https://www.google.com');
