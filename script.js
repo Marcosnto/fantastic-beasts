@@ -1,24 +1,31 @@
-// Adicione a classe ativo a todos os itens do menu
-const getElements = document.querySelectorAll('.menu a');
-getElements.forEach(element => {
-  element.classList.add('ativo');
-});
+// Verifique a distância da primeira imagem
+// em relação ao topo da página
+const firstImage = document.querySelector('img');
+console.log(firstImage.getBoundingClientRect().top);
+// Retorne a soma da largura de todas as imagens
+const allImages = document.querySelectorAll('img');
 
-console.log(getElements);
-
-// Remove a classe ativo de todos os itens do menu e mantenha ape
-getElements.forEach((element, index) => {
-  if(index !== 0){
-    element.classList.remove('ativo');
-  }
-});
-
-console.log(getElements);
-// Verifique se as imagens possuem o atributo alt
-const imgs = document.querySelectorAll('img');
-imgs.forEach((img,index) => {
-  console.log(img.hasAttribute('alt'))
+let widthSomatory = 0;
+allImages.forEach((img) => {
+  widthSomatory += img.getBoundingClientRect().y
 })
-// Modifique o href do link externo no menu
-const link = document.querySelector('a[href^="http"]');
-link.setAttribute('href', 'https://www.google.com');
+
+console.log(widthSomatory);
+
+// Verifique se os links da página possuem
+// o mínimo recomendado para telas utilizadas
+// com o dedo. (48px/48px de acordo com o google)
+const allLinks = document.querySelectorAll('a');
+allLinks.forEach((link) => {
+  let linkAttributes = link.getBoundingClientRect();
+  let isSmall = linkAttributes.Y === 48 && linkAttributes.X === 48 ? 'possui o padrão' : 'não possui o padrão'; 
+  console.log(`O link: ${link} ${isSmall}`)
+})
+// Se o browser for menor que 720px,
+// adicione a classe menu-mobile ao menu
+const getWindowSize = window.innerWidth; 
+if (getWindowSize < 720){
+  const getClassMenu = document.querySelector('.menu');
+  getClassMenu.classList.add('menu-mobile');
+  console.log('é menor')
+}
