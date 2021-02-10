@@ -1,49 +1,19 @@
-// Verifique a distância da primeira imagem
-// em relação ao topo da página
-const firstImage = document.querySelector('img');
-console.log(firstImage.getBoundingClientRect().top);
-//poderia ser também:
-console.log(firstImage.offsetTop);
+// Retorne no console todas as imagens do site
+const allImg = document.querySelectorAll('img');
+console.log(allImg);
 
-// Retorne a soma da largura de todas as imagens
-/** Para resolver essa questão é necessário esperar
- * o navegador carregar a página por completo, pois o JS é executado
- * antes do carregamento, sendo assim, como as larguras das imagens
- * não estão pré-definidas, não é possível obter tal propriedade.
- */
+// Retorne no console apenas as imagens que começaram com a palavra imagem
+const imagensAnimais = document.querySelectorAll('img[src^="img/imagem"]');
+console.log(imagensAnimais);
 
-function somaImagens(){
-  const allImages = document.querySelectorAll('img');
-  
-  let widthSomatory = 0;
-  allImages.forEach((img) => {
-    widthSomatory += img.offsetWidth;
-  })
-  
-  console.log(widthSomatory);
-}
+// Selecione todos os links internos (onde o href começa com #)
+const allLinks = document.querySelectorAll('a[href^="#"]');
+console.log(allLinks);
 
-window.onload = function() {
-  somaImagens();
-}
+// Selecione o primeiro h2 dentro de .animais-descricao
+const firstH2 = document.querySelector('.animais-descricao h2');
+console.log(firstH2);
 
-
-// Verifique se os links da página possuem o mínimo recomendado para telas utilizadas
-// com o dedo. (48px/48px de acordo com o google)
-const allLinks = document.querySelectorAll('a');
-allLinks.forEach((link) => {
-  let linkAttributesY = link.offsetHeight;
-  let linkAttributesX = link.offsetWidth;
-  let isSmall = linkAttributesY >= 48 && linkAttributesX >= 48 ? 'possui o padrão' : 'não possui o padrão'; 
-  console.log(`O link: ${link} ${isSmall}`)
-})
-
-
-// Se o browser for menor que 720px,
-// adicione a classe menu-mobile ao menu
-const getWindowSize = window.innerWidth; 
-if (getWindowSize < 720){
-  const getClassMenu = document.querySelector('.menu');
-  getClassMenu.classList.add('menu-mobile');
-  console.log('é menor')
-}
+// Selecione o último p do site
+const lastP = document.querySelectorAll('p');
+console.log(lastP[lastP.length-1]);
